@@ -2308,11 +2308,15 @@ PROCEDURE PrnDoc()
                       ?space(51)+str(kszr,2)+'-'+nszr+':'+' '+str(prr,5,2)+space(3)+iif(ssfr<10000000,str(ssfr-sm18r,10,2),str(ssfr-sm18r,12,2))
                     endif
                   endif
-                else // печать усеченной ВДН
+                else // prUpr=1 печать усеченной ВДН
                   // вывод суммы
                   if kopr=169
-                    nszr='                    '
-                    ?space(51)+space(2)+' '+nszr+' '+' '+space(5)+space(3)+str(s90ndsr,10,2)
+                    nszr=space(20)
+                    space51=space(51)
+                    /* If '":' $ textr
+                      space51=padr(allt(textr),51)
+                    EndIf */
+                    ?space51 + space(2) + ' ' + nszr + ' ' + ' ' + space(5)+space(3)+str(s90ndsr,10,2)
                   endif
                 endif
               OTHERWISE

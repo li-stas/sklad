@@ -42,28 +42,42 @@ while (.t.)
   set cent off
   // *   ngpr=getfield('t1','czg->kkl','kgp','ngrpol')
   // *   ngpr=getfield('t1','czg->kkl','kln','nkl')
+  //
   if (gnEnt=20)
     if (prDelr=0)
       if (attempr=1.or.attempr=3)
-        rcCzgr=slce('czg',,,,, "e:sk h:' SK' c:n(3) e:ttn h:'ТТН' c:n(6) e:kop h:'КОП' c:n(3) e:dvzttn h:'Возврат' c:d(8) e:getfield('t1','czg->kkl','kgp','ngrpol') h:'Наименование TT' c:c(27) e:mppsf h:'Пч' c:n(2) e:vsv h:'Вес кг' c:n(5) e:sdv h:'Сумма' c:n(8,2) e:vMrsh h:'VM' c:n(2) e:pri h:'П' c:n(1) e:vz h:'О' c:n(1) e:npp h:'Пз' c:n(2) e:getfield('t1','czg->vMrsh','atvm','nvMrsh') h:'Направление' c:c(20) e:eval(bNNasp_NRn) h:'Адрес TT' c:с(25)",,, 1, 'Mrsh=Mrshr',,, 'Маршрутный лист '+str(Mrshr, 6)+' '+nMrshr+' Вес '+str(mvsvr, 4)+' кг')
+        rcCzgr=slce('czg',,,,,;
+        "e:sk h:' SK' c:n(3) e:ttn h:'ТТН' c:n(6) e:kop h:'КОП' c:n(3)";
+        +" e:dVzTtn h:'Возврат' c:d(8)";
+        +" e:getfield('t1','czg->kkl','kgp','ngrpol') h:'Наименование_TT' c:c(27)";
+        +" e:mppSf h:'Пч' c:n(2)";
+        +" e:iif(empty(GetDataField(czg->Sk,'rs1','_rs1','t1','czg->ttn','_rs1->dot')),0,1) h:'Пн' c:n(2)";
+        +" e:vsv h:'Вес кг' c:n(5)";
+        +" e:sdv h:'Сумма' c:n(8,2) e:vMrsh h:'VM' c:n(2)";
+        +" e:pri h:'П' c:n(1) e:vz h:'О' c:n(1)";
+        +" e:npp h:'Пз' c:n(2)";
+        +" e:getfield('t1','czg->vMrsh','atvm','nvMrsh') h:'Направление' c:c(20)";
+        +" e:eval(bNNasp_NRn) h:'Адрес TT' c:с(25)",,, 1, 'Mrsh=Mrshr',,, ;
+        'Маршрутный лист '+str(Mrshr, 6)+' '+nMrshr+' Вес ' + str(mvsvr, 4);
+         + ' кг')
       else
-        rcCzgr=slce('czg',,,,, "e:sk h:' SK' c:n(3) e:ttn h:'ТТН' c:n(6) e:kop h:'КОП' c:n(3) e:dop h:'Отгрузка' c:d(8) e:getfield('t1','czg->kkl','kgp','ngrpol') h:'Наименование' c:c(27) e:mppsf h:'Пч' c:n(2) e:vsv h:'Вес кг' c:n(5) e:sdv h:'Сумма' c:n(8,2) e:vMrsh h:'VM' c:n(2) e:pri h:'П' c:n(1) e:vz h:'О' c:n(1) e:npp h:'Пз' c:n(2)",,, 1, 'Mrsh=Mrshr',,, 'Маршрутный лист '+str(Mrshr, 6)+' '+nMrshr+' Вес '+str(mvsvr, 4)+' кг')
+        rcCzgr=slce('czg',,,,, "e:sk h:' SK' c:n(3) e:ttn h:'ТТН' c:n(6) e:kop h:'КОП' c:n(3) e:dop h:'Отгрузка' c:d(8) e:getfield('t1','czg->kkl','kgp','ngrpol') h:'Наименование' c:c(27) e:mppSf h:'Пч' c:n(2) e:vsv h:'Вес кг' c:n(5) e:sdv h:'Сумма' c:n(8,2) e:vMrsh h:'VM' c:n(2) e:pri h:'П' c:n(1) e:vz h:'О' c:n(1) e:npp h:'Пз' c:n(2)",,, 1, 'Mrsh=Mrshr',,, 'Маршрутный лист '+str(Mrshr, 6)+' '+nMrshr+' Вес '+str(mvsvr, 4)+' кг')
       endif
 
     else
-      rcCzgr=slce('czg',,,,, "e:sk h:' SK' c:n(3) e:ttn h:'ТТН' c:n(6) e:kop h:'КОП' c:n(3) e:iif(deleted(),'Уд','  ') h:'Уд' c:c(2) e:getfield('t1','czg->kkl','kgp','ngrpol') h:'Наименование' c:c(29) e:mppsf h:'Пч' c:n(2) e:vsv h:'Вес кг' c:n(5) e:sdv h:'Сумма' c:n(8,2) e:vMrsh h:'VM' c:n(2) e:pri h:'П' c:n(1)",,, 1, 'Mrsh=Mrshr',,, 'Маршрутный лист '+str(Mrshr, 6)+' '+nMrshr+' Вес '+str(mvsvr, 4)+' кг')
+      rcCzgr=slce('czg',,,,, "e:sk h:' SK' c:n(3) e:ttn h:'ТТН' c:n(6) e:kop h:'КОП' c:n(3) e:iif(deleted(),'Уд','  ') h:'Уд' c:c(2) e:getfield('t1','czg->kkl','kgp','ngrpol') h:'Наименование' c:c(29) e:mppSf h:'Пч' c:n(2) e:vsv h:'Вес кг' c:n(5) e:sdv h:'Сумма' c:n(8,2) e:vMrsh h:'VM' c:n(2) e:pri h:'П' c:n(1)",,, 1, 'Mrsh=Mrshr',,, 'Маршрутный лист '+str(Mrshr, 6)+' '+nMrshr+' Вес '+str(mvsvr, 4)+' кг')
     endif
 
   else
     if (prDelr=0)
       if (attempr=1.or.attempr=3)
-        rcCzgr=slce('czg',,,,, "e:sk h:' SK' c:n(3) e:ttn h:'ТТН' c:n(6) e:kop h:'КОП' c:n(3) e:dvzttn h:'Возврат' c:d(8) e:getfield('t1','czg->kkl','kln','nkl') h:'Наименование' c:c(27) e:mppsf h:'Пч' c:n(2) e:vsv h:'Вес кг' c:n(5) e:sdv h:'Сумма' c:n(8,2) e:vMrsh h:'VM' c:n(2) e:pri h:'П' c:n(1) e:vz h:'О' c:n(1) e:npp h:'Пз' c:n(2) e:getfield('t1','czg->vMrsh','atvm','nvMrsh') h:'Направление' c:c(20)",,, 1, 'Mrsh=Mrshr',,, 'Маршрутный лист '+str(Mrshr, 6)+' '+nMrshr+' Вес '+str(mvsvr, 4)+' кг')
+        rcCzgr=slce('czg',,,,, "e:sk h:' SK' c:n(3) e:ttn h:'ТТН' c:n(6) e:kop h:'КОП' c:n(3) e:dVzTtn h:'Возврат' c:d(8) e:getfield('t1','czg->kkl','kln','nkl') h:'Наименование' c:c(27) e:mppSf h:'Пч' c:n(2) e:vsv h:'Вес кг' c:n(5) e:sdv h:'Сумма' c:n(8,2) e:vMrsh h:'VM' c:n(2) e:pri h:'П' c:n(1) e:vz h:'О' c:n(1) e:npp h:'Пз' c:n(2) e:getfield('t1','czg->vMrsh','atvm','nvMrsh') h:'Направление' c:c(20)",,, 1, 'Mrsh=Mrshr',,, 'Маршрутный лист '+str(Mrshr, 6)+' '+nMrshr+' Вес '+str(mvsvr, 4)+' кг')
       else
-        rcCzgr=slce('czg',,,,, "e:sk h:' SK' c:n(3) e:ttn h:'ТТН' c:n(6) e:kop h:'КОП' c:n(3) e:dop h:'Отгрузка' c:d(8) e:getfield('t1','czg->kkl','kln','nkl') h:'Наименование' c:c(27) e:mppsf h:'Пч' c:n(2) e:vsv h:'Вес кг' c:n(5) e:sdv h:'Сумма' c:n(8,2) e:vMrsh h:'VM' c:n(2) e:pri h:'П' c:n(1) e:vz h:'О' c:n(1) e:npp h:'Пз' c:n(2)",,, 1, 'Mrsh=Mrshr',,, 'Маршрутный лист '+str(Mrshr, 6)+' '+nMrshr+' Вес '+str(mvsvr, 4)+' кг')
+        rcCzgr=slce('czg',,,,, "e:sk h:' SK' c:n(3) e:ttn h:'ТТН' c:n(6) e:kop h:'КОП' c:n(3) e:dop h:'Отгрузка' c:d(8) e:getfield('t1','czg->kkl','kln','nkl') h:'Наименование' c:c(27) e:mppSf h:'Пч' c:n(2) e:vsv h:'Вес кг' c:n(5) e:sdv h:'Сумма' c:n(8,2) e:vMrsh h:'VM' c:n(2) e:pri h:'П' c:n(1) e:vz h:'О' c:n(1) e:npp h:'Пз' c:n(2)",,, 1, 'Mrsh=Mrshr',,, 'Маршрутный лист '+str(Mrshr, 6)+' '+nMrshr+' Вес '+str(mvsvr, 4)+' кг')
       endif
 
     else
-      rcCzgr=slce('czg',,,,, "e:sk h:' SK' c:n(3) e:ttn h:'ТТН' c:n(6) e:kop h:'КОП' c:n(3) e:iif(deleted(),'Уд','  ') h:'Уд' c:c(2) e:getfield('t1','czg->kkl','kln','nkl') h:'Наименование' c:c(29) e:mppsf h:'Пч' c:n(2) e:vsv h:'Вес кг' c:n(5) e:sdv h:'Сумма' c:n(8,2) e:vMrsh h:'VM' c:n(2) e:pri h:'П' c:n(1)",,, 1, 'Mrsh=Mrshr',,, 'Маршрутный лист '+str(Mrshr, 6)+' '+nMrshr+' Вес '+str(mvsvr, 4)+' кг')
+      rcCzgr=slce('czg',,,,, "e:sk h:' SK' c:n(3) e:ttn h:'ТТН' c:n(6) e:kop h:'КОП' c:n(3) e:iif(deleted(),'Уд','  ') h:'Уд' c:c(2) e:getfield('t1','czg->kkl','kln','nkl') h:'Наименование' c:c(29) e:mppSf h:'Пч' c:n(2) e:vsv h:'Вес кг' c:n(5) e:sdv h:'Сумма' c:n(8,2) e:vMrsh h:'VM' c:n(2) e:pri h:'П' c:n(1)",,, 1, 'Mrsh=Mrshr',,, 'Маршрутный лист '+str(Mrshr, 6)+' '+nMrshr+' Вес '+str(mvsvr, 4)+' кг')
     endif
 
   endif
@@ -119,10 +133,10 @@ while (.t.)
     dtror=ctod('')
   endif
 
-  if (fieldpos('dvzttn')#0)
-    dvzttnr=dvzttn
+  if (fieldpos('dVzTtn')#0)
+    dVzTtnr=dVzTtn
   else
-    dvzttnr=ctod('')
+    dVzTtnr=ctod('')
   endif
 
   if (fieldpos('npp')#0)
@@ -347,9 +361,9 @@ while (.t.)
       clvz=setcolor('gr+/b,n/w')
       wvz=wopen(10, 20, 12, 60)
       wbox(1)
-      @ 0, 1 say 'Дата возврата' get dvzttnr
+      @ 0, 1 say 'Дата возврата' get dVzTtnr
       read
-      netrepl('dvzttn', {dvzttnr})
+      netrepl('dVzTtn', {dVzTtnr})
       if (fieldpos('tvzttn')#0)
         netrepl('tvzttn', {time()})
       endif
@@ -701,7 +715,7 @@ static function CzgIns()
           endif
 
           prir=pri
-          mppsfr=mppsf
+          mppSfr=mppSf
           vMrshnr=vMrsh
           ktar=kta
           if (fieldpos('ttnp')#0)
@@ -731,8 +745,8 @@ static function CzgIns()
           sele czg
           if (!netseek('t6', 'Mrshr,entr,skr,d0k1r,ttnr'))
             netadd()
-            netrepl('Mrsh,ent,sk,ttn,kkl,vsv,sdv,kop,pri,vMrsh,d0k1,mppsf',                            ;
-                     { Mrshr, entr, skr, ttnr, kklr, dvsvr, dsdvr, kopr, prir, vMrshnr, d0k1r, mppsfr } ;
+            netrepl('Mrsh,ent,sk,ttn,kkl,vsv,sdv,kop,pri,vMrsh,d0k1,mppSf',                            ;
+                     { Mrshr, entr, skr, ttnr, kklr, dvsvr, dsdvr, kopr, prir, vMrshnr, d0k1r, mppSfr } ;
                   )
             if (fieldpos('vsvb')#0)
               netrepl('vsvb', {dvsvbr})
@@ -1130,7 +1144,7 @@ static function CzgPd()
         kplr=nkkl
         nklr=getfield('t1', 'kklr', 'kln', 'nkle')
         prir=getfield('t1', 'kklr', 'kln', 'pri')
-        mppsfr=ppsf
+        mppSfr=ppsf
         if (prir=0)
           prir=9
         endif
@@ -1159,8 +1173,8 @@ static function CzgPd()
           if (!netseek('t3', 'entr,skr,ttnr,0'))
             sele atDocs
             netadd()
-            netrepl('ent,sk,ttn,vo,kop,kkl,nkl,vsv,sdv,dsp,dot,tot,dtro,vMrsh,pri,vts,mppsf,pvt,kta,ktas,mppsf',                                            ;
-                     { entr, skr, ttnr, vor, kopr, kklr, nklr, vsvr, sdvr, dfpr, dotr, totr, dtror, vMrsh_r, prir, vtsr, mppsfr, pvtr, ktar, ktasr, mppsfr } ;
+            netrepl('ent,sk,ttn,vo,kop,kkl,nkl,vsv,sdv,dsp,dot,tot,dtro,vMrsh,pri,vts,mppSf,pvt,kta,ktas,mppSf',                                            ;
+                     { entr, skr, ttnr, vor, kopr, kklr, nklr, vsvr, sdvr, dfpr, dotr, totr, dtror, vMrsh_r, prir, vtsr, mppSfr, pvtr, ktar, ktasr, mppSfr } ;
                   )
             if (fieldpos('ttnp')#0)
               netrepl('ttnp,ttnc', {ttnpr,ttncr})
@@ -1188,8 +1202,8 @@ static function CzgPd()
           if (!netseek('t3', 'entr,skr,ttnr'))
             sele atDocs
             netadd()
-            netrepl('ent,sk,ttn,vo,kop,kkl,nkl,vsv,sdv,dsp,dot,tot,dtro,vMrsh,pri,vts,mppsf,pvt,kta,ktas',                                          ;
-                     { entr, skr, ttnr, vor, kopr, kklr, nklr, vsvr, sdvr, dfpr, dotr, totr, dtror, vMrsh_r, prir, vtsr, mppsfr, pvtr, ktar, ktasr } ;
+            netrepl('ent,sk,ttn,vo,kop,kkl,nkl,vsv,sdv,dsp,dot,tot,dtro,vMrsh,pri,vts,mppSf,pvt,kta,ktas',                                          ;
+                     { entr, skr, ttnr, vor, kopr, kklr, nklr, vsvr, sdvr, dfpr, dotr, totr, dtror, vMrsh_r, prir, vtsr, mppSfr, pvtr, ktar, ktasr } ;
                   )
             if (fieldpos('ttnp')#0)
               netrepl('ttnp,ttnc', {ttnpr,ttncr})

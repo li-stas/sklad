@@ -241,9 +241,9 @@ if (Lastkey()=K_ENTER)
       endif
 
     case (pozicion=11)    //Ведомость расхода  Ok
-      RSVED()
+      RsVed()
     case (pozicion=12)    //Ведомость текущего дня
-      RSVEDTD()
+      RsVedTd()
     case (pozicion=13)    //Комиссионная торговля
       gnRegrs=0
       gnVo=3
@@ -251,7 +251,7 @@ if (Lastkey()=K_ENTER)
     case (pozicion=14)    //Отчеты комиссионеров
       rvedvGR()
     case (pozicion=15)
-      rprot()               // Протокол расхода
+      RProt()               // Протокол расхода
     case (pozicion=16)    //Автоматические
       gnVo=0
       fornd_r='sks#0'
@@ -355,7 +355,7 @@ if (Lastkey()=K_ENTER)
       vzkpk()                        //sctov.prg
                                      // ktaopl()      //sctov.prg
     case (pozicion=18)             // Акции
-      rsakc()                        // cen.prg
+      RsAkc()                        // cen.prg
     case (pozicion=19.and.(gnAdm=1.or.gnRnap=1).and.gnEnt=20)// Оплата по направдениям
       OplNap()              //sctov.prg
     case (pozicion=20)    // акт верки по оборудованию

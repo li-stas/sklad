@@ -70,7 +70,7 @@ sele 0
 use AtTemp excl
 inde on str(Mrsh, 6) tag t1
 
-crtt('AtDocs', "f:Mrsh c:n(6) f:ent c:n(2) f:sk c:n(3) f:ttn c:n(6) f:vo c:n(2) f:kop c:n(3) f:kkl c:n(7) f:nkl c:c(30) f:vsv c:n(11,3) f:vsvb c:n(11,3) f:sdvu c:n(15,2) f:sdv c:n(15,2) f:dsp c:d(10) f:dot c:d(10) f:tot c:c(8) f:pri c:n(1) f:tsp c:c(8) f:vMrsh c:n(2) f:dtro c:d(10) f:vts c:c(1) f:mppsf c:n(2) f:pvt c:n(1) f:kta c:n(4) f:vz c:n(2) f:ttnp c:n(6) f:ttnc c:n(6) f:kpl c:n(7) f:ktas c:n(4) f:ztxt c:c(200) f:pl c:n(7) f:gp c:n(7) f:d0k1 c:n(1)")
+crtt('AtDocs', "f:Mrsh c:n(6) f:ent c:n(2) f:sk c:n(3) f:ttn c:n(6) f:vo c:n(2) f:kop c:n(3) f:kkl c:n(7) f:nkl c:c(30) f:vsv c:n(11,3) f:vsvb c:n(11,3) f:sdvu c:n(15,2) f:sdv c:n(15,2) f:dsp c:d(10) f:dot c:d(10) f:tot c:c(8) f:pri c:n(1) f:tsp c:c(8) f:vMrsh c:n(2) f:dtro c:d(10) f:vts c:c(1) f:mppSf c:n(2) f:pvt c:n(1) f:kta c:n(4) f:vz c:n(2) f:ttnp c:n(6) f:ttnc c:n(6) f:kpl c:n(7) f:ktas c:n(4) f:ztxt c:c(200) f:pl c:n(7) f:gp c:n(7) f:d0k1 c:n(1)")
 sele 0
 use AtDocs excl
 inde on str(ent, 2)+str(sk, 3)+str(ttn, 6) tag t1

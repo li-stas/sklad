@@ -9,15 +9,15 @@ OBJS  = main.o sklad.o vtara.o\
 	sklprv.o\
 	\
 	sctov.o vobr.o tov.o tovp.o tovm.o vost.o vostm.o tovins.o cen.o\
-	pr1ktl.o rs1ktl.o vcen.o vinv.o obncen.o vobrpr.o ctov.o \
-	prnprice.o deb.o debn.o debn03.o debs.o lpos.o lposd.o mcrdbc.o\
+	pr1ktl.o rs1ktl.o vcen.o vinv.o obncen.o vobrpr.o \
+	prnprice.o debn.o debs.o\
 	\
-	pudl.o protch.o prh.o prved.o pr2kvp.o pr2.o\
-	ptovslc.o ptovslc3.o ptovslcc.o ptovslcd.o\
-	pfakt.o crpro.o pro.o pprot.o pprh.o paotv.o\
-	pr3ssf.o etic.o praotv.o rfakt.o rprh.o rprhp.o rpaotv.o rs2zen.o\
+	pudl.o protch.o prh.o prved.o pr2kvp.o ptovslc.o ptovslc3.o pr2.o\
+	ptovslcc.o pfakt.o ptovslcd.o crpro.o pro.o pprot.o pprh.o paotv.o\
+	pr3ssf.o etic.o praotv.o rfakt.o rprh.o rprhp.o rpaotv.o \
 	rudl.o rved_e.o rzag.o tsert.o bso1.o bso2.o rtovslc.o rtovmslc.o\
 	rs2ins.o rs2mins.o rvedvgr.o rsved.o rsh.o rs2.o rs2m.o rso.o crrso.o\
+	rs2zen.o\
 	rprot.o rsprn.o rs3ssf.o rfinskl.o vtar.o vkach.o rsdogzen.o rsshap.o\
 	rssert.o rsvedtd.o rszg.o sp_ttn.o rsprnm.o rsnaczen.o rslib.o rslibe.o\
 	\
@@ -28,14 +28,13 @@ OBJS  = main.o sklad.o vtara.o\
 	\
 	cmrsh.o kgpsk.o vmrsh.o crmrsh.o czg.o vzttn.o cmrshlib.o\
 	\
-	tov_d.o sbarost.o\
+	tov_d.o ctov.o sbarost.o ftoken.o\
 	\
 	rmsk.o rmsd0.o rmsd1.o rmrc0.o rmrc1.o rmsdrc.o corvt.o corauto.o autodoc.o\
 	\
-	lic.o nds.o s_soper.o s_tag.o s_sgrp.o odkp.o mkotchd.o ndsdoc.o\
+	lic.o s_soper.o s_tag.o s_sgrp.o odkp.o mkotchd.o\
 	\
 	bindx.o slctn2.o periodn.o vpath.o maine.o libfcn.o libdbf.o libfcne.o\
-	ftoken.o\
 	\
 	menu.o ent.o mmain.o
 

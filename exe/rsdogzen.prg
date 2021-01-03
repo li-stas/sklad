@@ -258,7 +258,8 @@ while (.t.)
 
   If aPcenr=6
 
-    Repl_ZenRs2(5, prUZenr) // заливает 10%
+    aRs2ZenOld := {{0,svpr,Zenr,prZenr,BZenr,prBZenr}}
+    Repl_ZenRs2(5, prUZenr, @aRs2ZenOld) // заливает 10%
     Pere(2)
     nS_SdvOpt = getfield('t1','ttnr,90','rs3','ssf')
 
@@ -266,20 +267,37 @@ while (.t.)
     nSumUts := Read_SumUts(sdvotp_r, nS_SdvOpt) //  какую хотим
 
     if (lastkey()=K_ESC)
+      //outlog(__FILE__,__LINE__,aRs2ZenOld)
+
+      rs2->(AEval(aRs2ZenOld;
+      , {|aRec| DBGoTo(aRec[1]);
+      ,svpr:=aRec[2],Zenr:=aRec[3],prZenr:=aRec[4];
+      ,BZenr:=aRec[5],prBZenr:=aRec[6];
+      , netrepl('svp,Zen,pZen,BZen,pBZen',       ;
+                'svpr,Zenr,prZenr,BZenr,prBZenr' ;
+            );
+      };
+      ,2))
+      Pere(2)
+
       exit
     endif
+
     If round(nMaxSumUts - nSumUts,2) = 0
-      exit
+      nMaxSumUts := 0
+    else
+      if CalcPercent(nSumUts, @nMaxSumUts, sdvotp_r, nS_SdvOpt) # 0
+        wmess('Цель не остигнyта. Разница = '+str(nMaxSumUts,5,2), 0)
+      endif
     EndIf
 
-    if CalcPercent(nSumUts, @nMaxSumUts, sdvotp_r, nS_SdvOpt) # 0
-      wmess('Цель не остигнyта. Разница = '+str(nMaxSumUts,5,2), 0)
-    endif
-
-    rs1->(netseek('t1','ttnr'))
     Text1r := allt(getfield('t1', 'ttnr', 'rs1', 'text'));
       +" " + '"Коригування":' + "-" + allt(str(nSumUts + nMaxSumUts,8,2))
+
+    rs1->(netseek('t1','ttnr'))
     rs1->(netrepl('Text','Text1r'))
+      //outlog(__FILE__,__LINE__,Text1r)
+      //outlog(__FILE__,__LINE__,Text)
     Textr := getfield('t1', 'ttnr', 'rs1', 'text') // обновить глоб переменную
 
     exit
@@ -477,11 +495,10 @@ endif
 sele rs2
 set order to tag t3
 
-/********************* */
+/*********************
 // Функции
-/********************* */
-
-function prBZen(p1)
+*/
+static function prBZen(p1)
   if (p1=1)               // На группу
     sele psgr
     ngPrBZenr=((gSmSBZenr+gSmBZenPr)/gSmBZenPr-1)*100
@@ -507,8 +524,8 @@ function prBZen(p1)
   return (.t.)
 
 /***************** */
-function prXZen(p1)
   /***************** */
+static function prXZen(p1)
   if (p1=1)               // На группу
     sele psgr
     gPrXZenr=((gSmSXZenr+gSmXZenPr)/gSmXZenPr-1)*100
@@ -521,11 +538,11 @@ function prXZen(p1)
 
   return (.t.)
 
-/******************************************************* */
-function rs2prc(p1)
+/*******************************************************
   // p1=1 текущие прайсовые цены ,договорные скидки
   // p1=2 прайсовые цены по документу,скидки по документу
-  /******************************************************* */
+  */
+function rs2prc(p1)
   if (gnKt=1)
     return (.t.)
   endif
@@ -2122,7 +2139,8 @@ function ZenAk(p1, p2)
  ВОЗВР. ЗНАЧЕНИЕ....
  ПРИМЕЧАНИЯ.........
  */
-STATIC FUNCTION Repl_ZenRs2(aPcenr, nPercent)
+STATIC FUNCTION Repl_ZenRs2(aPcenr, nPercent, aRs2ZenOld)
+  DEFAULT aRs2ZenOld TO {{0,svpr,Zenr,prZenr,BZenr,prBZenr}}
   sele rs2
   if (netseek('t1', 'ttnr'))
     while (ttn=ttnr)
@@ -2185,6 +2203,7 @@ STATIC FUNCTION Repl_ZenRs2(aPcenr, nPercent)
 
 
       sele rs2
+      aadd(aRs2ZenOld,{recno(),svp,Zen,pZen,BZen,pBZen})
       kvpr=kvp
       svpr=round(kvpr*Zenr, 2)
       netrepl('svp,Zen,pZen,BZen,pBZen',       ;
@@ -2396,7 +2415,7 @@ STATIC FUNCTION Read_SumUts(sdvotp_r, nS_SdvOpt)
              + " Макс скидка" + "=" + allt(str(nSumUtsMax, 10, 2))
 
   @ 1, 1 say 'Сумма скидки  ' get nSumUts picture '@K 99999.99' ;
-    valid nSumUts >= 0 .and. nSumUts < nSumUtsMax
+    valid nSumUts > 0 .and. nSumUts <= nSumUtsMax
 
 
   read
