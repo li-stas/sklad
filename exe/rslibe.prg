@@ -247,7 +247,10 @@ function ttn()
             //    ttnr=slcf('rs1',1,,18,,"e:ttn h:'ТТН' c:n(6) e:kop h:'КОП' c:n(3) e:prz h:'П' c:n(1) e:dvp h:'Дата В' c:d(8) e:dop h:'Дата О' c:d(8) e:sdv h:'Сумма' c:n(10,2) e:getfield('t1','rs1->kpv','kln','nkl') h:'Получатель' c:c(23) e:getfield('t1','rs1->kta','s_tag','fio') h:'Агент' c:c(8) e:kolosp h:'O' c:n(1) e:pr49 h:'П' c:n(1)",'ttn',,,,ForTtnr)
             if (fieldpos('ttn177')#0)
               if (str(gnEnt,3)$' 20; 21')
-                ttnr=slcf('rs1', 1,, 18,, "e:ttn h:'ТТН' c:n(6) e:kop h:'КОП' c:n(3) e:prz h:'П' c:n(1) e:dvp h:'Дата В' c:d(8) e:dop h:'Дата О' c:d(8) e:sdv h:'Сумма' c:n(10,2) e:getfield('t1','rs1->kpv','kgp','ngrpol') h:'Получатель' c:c(23) e:getfield('t1','rs1->kta','s_tag','fio') h:'Агент' c:c(8) e:prZZen h:'Z' c:n(1) e:pr177 h:'O' c:n(1)", 'ttn',,,, ForTtnr)
+                //ttnr=slce('rs1', 1,, 18,, "e:ttn h:'ТТН' c:n(6) e:kop h:'КОП' c:n(3) e:timecrt h:'Время КПК' c:c(19) e:sdv h:'Сумма' c:n(10,2) e:getfield('t1','rs1->kpv','kgp','ngrpol') h:'Получатель' c:c(23) e:getfield('t1','rs1->kta','s_tag','fio') h:'Агент' c:c(8) e:DocGuid h:'Документ КПК' c:c(36) e:kta h:'KTA' c:n(4) e:ktas h:'KTAS' c:n(4) e:prz h:'П' c:n(1) e:dfp h:'Дата ФП' c:d(8) e:dop h:'Дата O' c:d(8)", 'ttn',,,, ForTtnr,,, 1, 2)
+                ttnr=slcf('rs1', 1,, 18,, "e:ttn h:'ТТН' c:n(6) e:kop h:'КОП' c:n(3) e:prz h:'П' c:n(1) e:dvp h:'Дата В' c:d(8) e:dop h:'Дата О' c:d(8) e:sdv h:'Сумма' c:n(10,2) e:getfield('t1','rs1->kpv','kgp','ngrpol') h:'Получатель' c:c(23) e:getfield('t1','rs1->kta','s_tag','fio') h:'Агент' c:c(8) e:prZZen h:'Z' c:n(1) e:pr177 h:'O' c:n(1) e:npv h:'коментарий' c:c(36)", 'ttn',,,, ForTtnr)
+                //TtnKpkr:=1
+                //ttnr=slce('rs1', 1,, 18,, "e:ttn h:'ТТН' c:n(6) e:kop h:'КОП' c:n(3) e:prz h:'П' c:n(1) e:dvp h:'Дата В' c:d(8) e:dop h:'Дата О' c:d(8) e:sdv h:'Сумма' c:n(10,2) e:getfield('t1','rs1->kpv','kgp','ngrpol') h:'Получатель' c:c(23) e:getfield('t1','rs1->kta','s_tag','fio') h:'Агент' c:c(8) e:prZZen h:'Z' c:n(1) e:pr177 h:'O' c:n(1) e:npv h:'коментарий' c:c(36)", 'ttn',,,, ForTtnr,,, 1, 2)
               else
                 if (str(gnEnt,3)$' 20; 21')
                   ttnr=slcf('rs1', 1,, 18,, "e:ttn h:'ТТН' c:n(6) e:kop h:'КОП' c:n(3) e:prz h:'П' c:n(1) e:dvp h:'Дата В' c:d(8) e:dop h:'Дата О' c:d(8) e:sdv h:'Сумма' c:n(10,2) e:getfield('t1','rs1->kpv','kgp','ngrpol') h:'Получатель' c:c(23) e:getfield('t1','rs1->kta','s_tag','fio') h:'Агент' c:c(8) e:prZZen h:'Z' c:n(1) e:pr177 h:'O' c:n(1)", 'ttn',,,, ForTtnr)
@@ -277,7 +280,7 @@ function ttn()
             else
               if (fieldpos('fc')=0)
                 if (gnEnt=20)
-                  ttnr=slce('rs1', 1,, 18,, "e:ttn h:'ТТН' c:n(6) e:kop h:'КОП' c:n(3) e:prz() h:'П' c:c(3) e:dfp h:'Дата ФП' c:d(8) e:dop h:'Дата O' c:d(8) e:sdv h:'Сумма' c:n(10,2) e:getfield('t1','rs1->kpv','kgp','ngrpol') h:'Получатель' c:c(23) e:getfield('t1','rs1->kta','s_tag','fio') h:'Агент' c:c(8) e:DocGuid h:'Документ КПК' c:c(36) e:timecrt h:'Время КПК' c:c(19) e:kta h:'KTA' c:n(4) e:ktas h:'KTAS' c:n(4) e:tdc h:'ВрС' c:c(8)", 'ttn',,,, ForTtnr,,, 1, 2)
+                  ttnr=slce('rs1', 1,, 18,, "e:ttn h:'ТТН' c:n(6) e:kop h:'КОП' c:n(3) e:prz() h:'П' c:c(4) e:dfp h:'Дата ФП' c:d(8) e:dop h:'Дата O' c:d(8) e:sdv h:'Сумма' c:n(10,2) e:getfield('t1','rs1->kpv','kgp','ngrpol') h:'Получатель' c:c(23) e:getfield('t1','rs1->kta','s_tag','fio') h:'Агент' c:c(8) e:DocGuid h:'Документ КПК' c:c(36) e:timecrt h:'Время КПК' c:c(19) e:kta h:'KTA' c:n(4) e:ktas h:'KTAS' c:n(4) e:tdc h:'ВрС' c:c(8)", 'ttn',,,, ForTtnr,,, 1, 2)
                 else
                   ttnr=slce('rs1', 1,, 18,, "e:ttn h:'ТТН' c:n(6) e:kop h:'КОП' c:n(3) e:prz h:'П' c:n(1) e:dfp h:'Дата ФП' c:d(8) e:dop h:'Дата O' c:d(8) e:sdv h:'Сумма' c:n(10,2) e:getfield('t1','rs1->kpv','kln','nkl') h:'Получатель' c:c(23) e:getfield('t1','rs1->kta','s_tag','fio') h:'Агент' c:c(8) e:DocGuid h:'Документ КПК' c:c(36) e:timecrt h:'Время КПК' c:c(19) e:kta h:'KTA' c:n(4) e:ktas h:'KTAS' c:n(4) e:tdc h:'ВрС' c:c(8)", 'ttn',,,, ForTtnr,,, 1, 2)
                 endif
@@ -285,7 +288,7 @@ function ttn()
               else
                 if (gnEnt=20 .or. gnEnt=21)
                   //ttnr=slce('rs1',1,,18,,"e:ttn h:'ТТН' c:n(6) e:kop h:'КОП' c:n(3) e:kopi h:'КОП' c:n(3) e:prz h:'П' c:n(1) e:dfp h:'Дата ФП' c:d(8) e:dop h:'Дата O' c:d(8) e:sdv h:'Сумма' c:n(10,2) e:getfield('t1','rs1->kpv','kln','nkl') h:'Получатель' c:c(23) e:getfield('t1','rs1->kta','s_tag','fio') h:'Агент' c:c(8) e:DocGuid h:'Документ КПК' c:c(36) e:timecrt h:'Время КПК' c:c(19) e:kta h:'KTA' c:n(4) e:ktas h:'KTAS' c:n(4) e:tdc h:'ВрС' c:c(8) e:fc h:'Блок' c:n(1) e:getfield('t1','rs1->ttn,46','rs3','ssf') h:'Серт' c:n(10,2)",'ttn',,,,ForTtnr,,,1,2)
-                  ttnr=slce('rs1', 1,, 18,, "e:ttn h:'ТТН' c:n(6) e:kop h:'КОП' c:n(3) e:prz() h:'П' c:c(3) e:dfp h:'Дата ФП' c:d(8) e:ktofp h:'ФК' c:n(4) e:dop h:'Дата O' c:d(8) e:sdv h:'Сумма' c:n(10,2) e:getfield('t1','rs1->kpv','kgp','ngrpol') h:'Получатель' c:c(23) e:getfield('t1','rs1->kta','s_tag','fio') h:'Агент' c:c(8) e:DocGuid h:'Документ КПК' c:c(36) e:timecrt h:'Время КПК' c:c(19) e:kta h:'KTA' c:n(4) e:ktas h:'KTAS' c:n(4) e:tdc h:'ВрС' c:c(8) e:fc h:'Блок' c:n(1) e:getfield('t1','rs1->ttn,46','rs3','ssf') h:'Серт' c:n(10,2)", 'ttn',,,, ForTtnr,,, 1, 2)
+                  ttnr=slce('rs1', 1,, 18,, "e:ttn h:'ТТН' c:n(6) e:kop h:'КОП' c:n(3) e:prz() h:'П' c:c(4) e:dfp h:'Дата ФП' c:d(8) e:ktofp h:'ФК' c:n(4) e:dop h:'Дата O' c:d(8) e:sdv h:'Сумма' c:n(10,2) e:getfield('t1','rs1->kpv','kgp','ngrpol') h:'Получатель' c:c(23) e:getfield('t1','rs1->kta','s_tag','fio') h:'Агент' c:c(8) e:DocGuid h:'Документ КПК' c:c(36) e:timecrt h:'Время КПК' c:c(19) e:kta h:'KTA' c:n(4) e:ktas h:'KTAS' c:n(4) e:tdc h:'ВрС' c:c(8) e:fc h:'Блок' c:n(1) e:getfield('t1','rs1->ttn,46','rs3','ssf') h:'Серт' c:n(10,2)", 'ttn',,,, ForTtnr,,, 1, 2)
                 else
                   ttnr=slce('rs1', 1,, 18,, "e:ttn h:'ТТН' c:n(6) e:kop h:'КОП' c:n(3) e:prz h:'П' c:n(1) e:dfp h:'Дата ФП' c:d(8) e:ktofp h:'ФК' c:n(4) e:dop h:'Дата O' c:d(8) e:sdv h:'Сумма' c:n(10,2) e:getfield('t1','rs1->kpv','kln','nkl') h:'Получатель' c:c(23) e:getfield('t1','rs1->kta','s_tag','fio') h:'Агент' c:c(8) e:DocGuid h:'Документ КПК' c:c(36) e:timecrt h:'Время КПК' c:c(19) e:kta h:'KTA' c:n(4) e:ktas h:'KTAS' c:n(4) e:tdc h:'ВрС' c:c(8) e:fc h:'Блок' c:n(1) e:getfield('t1','rs1->ttn,46','rs3','ssf') h:'Серт' c:n(10,2)", 'ttn',,,, ForTtnr,,, 1, 2)
                 endif
@@ -2100,7 +2103,7 @@ function prn11tn()
   ?''
   ?'кiлькiсть мiсць '+numstr(kmestr, 1)+' ,масою бруто,кг '+numstr(roun(vsvr, 0), 1)+',отримав експедитор '+padr(necsr, 15)+'______________'
   ?''
-  buhr=repl('_', 40)
+  buhr=repl('_', 40-12)
   do case
   case (gnEnt=20.and.gnSk=228)
     komir=subs(getfield('t1', '60', 'speng', 'fio'), 1, 15)
@@ -2114,7 +2117,8 @@ function prn11tn()
     komir=space(15)
   endcase
 
-  ?'Бухгалтер(вiдповiдальна особа вантажовiдправника) '+buhr+'вiдпуск дозволив комiрник '+komir+'________________'
+  //?'Бухгалтер(на особа вантажовiдправника) '+buhr+'вiдпуск дозволив комiрник '+komir+'________________'
+  ?'Менеджер по логiстицi(вiдповiдальна особа вантажовiдправника) '+buhr+'вiдпуск дозволив комiрник '+komir+'________________'
   ?''
   s11r=getfield('t1', 'ttnr,11', 'rs3', 'ssf')
   ?'Усього вiдпущено на загальну суму '+padr(numstr(sdvr), 55)+',у т.ч.ПДВ '+str(s11r, 10, 2)+' грн'
@@ -2194,13 +2198,15 @@ function PrnPrc()
  ПРИМЕЧАНИЯ.........
  */
 function prz()
-  cOut:=REPLICATE('_', 3)
+  cOut:=REPLICATE('_', 4)
   // задание
   cOut:=STUFF(cOut, 1, 1, iif(empty(rs1->ztxt), ' ', 'z'))
   // договор
   cOut:=STUFF(cOut, 2, 1, iif(dog(rs1->nkkl, rs1->Kop), ' ', 'd'))
   // GPS - к-ты
   cOut:=STUFF(cOut, 3, 1, IIF(Ttn = DocId .and. EMPTY(VAL(GpsLat)), ' ', '~'))
+  //обмен
+  cOut:=STUFF(cOut, 4, 1, IIF('обм' $ lower(npv), '@', ' '))
 
   /*
   LOCAL nRet:=_FIELD->prz

@@ -2328,28 +2328,9 @@ PROCEDURE PrnDoc()
            skip
         enddo
      endif
-     IF vzz#3.and.!(kopr=177.and.(vzz=1.or.vzz=3))
-        IF kecsr#0
-           if kopr#168.or.kopr=168.and.((vzz=1.or.vzz=3).and.kkr#2.or.vzz#1)
-              if rs1->prZZen=0
-                 if .t.
-                    if str(kopr,3) $ '169;126'.or.gnEntRm=1.and.svczr=0
-                       ?''
-                    else
-                       ?'Експедитор  ' +getfield('t1','kecsr','s_tag','fio')
-                    endif
-                 else
-                    ?'Експедитор  ' +getfield('t1','kecsr','s_tag','fio')
-                 endif
-              else
-                 ?''
-              endif
-              rsle()
-           endif
-        ENDIF
-        ?textr
-        rsle()
-     endif
+
+     //QOut_forwarder()
+
      sele rs3
      IF netseek('t1','ttnr,90')
         IF vzz=5
@@ -2474,7 +2455,7 @@ PROCEDURE PrnDoc()
   // востановим кво позиций
   kolpos_r:=nPre_kolpos_r
 
-  RETU
+  RETURN
 
 /*****************************************************************
  
@@ -2588,7 +2569,7 @@ proc rsfoot()
              ?' "___" ____________ 20   р. Вага (бруто)  '+str(svesr,10,3)+' кг Кiл.мiсць '+str(vmestr,5)
           EndIf
           if Who = 1 .Or. ((Who = 3.or.who=4) .And. (Vzz = 1.or.vzz=3))
-             for i=1 to 43-rswr-6
+             for i=1 to 43-rswr-6-3 // -2 мнеджер логистики
                  ?''
              endf
 
@@ -2643,6 +2624,9 @@ proc rsfoot()
                else
                      ?'                                       Вантаж одержав ___________________________________________'
                endIf
+
+               QOut_forwarder()
+
                if (kopr=177.and.(vzz=1.or.vzz=3))
                   if kopr#168.or.kopr=168.and.((vzz=1.or.vzz=3).and.kkr#2.or.vzz#1)
                      ?repl('-',95)
@@ -3149,6 +3133,7 @@ func RsSh(p1)
               ngpr=getfield('t1','kplr','kln','nkl')
               knaspr=getfield('t1','kplr','kln','knasp')
               nnaspr=alltrim(getfield('t1','knaspr','knasp','nnasp'))
+              outlog(3,__FILE__,__LINE__,"nnaspr", nnaspr,knaspr,kplr )
               if gnEnt=20.or.gnEnt=21 // *01
                   if rs1->prZZen=0
                     ?'Мiсце дост: '+alltrim(ngpr)+' код '+str(kplr,7)+' тел '+getfield('t1','kplr','kln','tlf')+' '+nnaspr+' '+alltrim(getfield('t1','kplr','kln','adr'))
@@ -4936,3 +4921,43 @@ STATIC FUNCTION cNmLocalGrp(nat, ktl)
   outlog(3,__FILE__,__LINE__,nat)
   outlog(3,__FILE__,__LINE__,nPosLocalGrp,cNmLocalGrp)
   RETURN (cNmLocalGrp)
+
+/*****************************************************************
+ 
+ FUNCTION:
+ АВТОР..ДАТА..........С. Литовка  02-13-21 * 09:54:02am
+ НАЗНАЧЕНИЕ......... вывод экспедитора
+ ПАРАМЕТРЫ..........
+ ВОЗВР. ЗНАЧЕНИЕ....
+ ПРИМЕЧАНИЯ.........
+ */
+STATIC FUNCTION QOut_forwarder()
+  IF vzz#3.and.!(kopr=177.and.(vzz=1.or.vzz=3))
+    IF kecsr#0
+        if kopr#168.or.kopr=168.and.((vzz=1.or.vzz=3).and.kkr#2.or.vzz#1)
+          if rs1->prZZen=0
+              if .t.
+                if str(kopr,3) $ '169;126'.or.gnEntRm=1.and.svczr=0
+                    ?''
+                else
+                    ?''
+                    ?'Експедитор  ' +getfield('t1','kecsr','s_tag','fio') + '   _____________________'
+                    ?''
+                    ?'Менеджер по логiстицi:____________________________    _______________________'
+                endif
+              else
+                ?''
+                ?'Експедитор: ' +getfield('t1','kecsr','s_tag','fio')
+                ?''
+                ?'Менеджер по логiстицi:____________________________    _______________________'
+              endif
+          else
+              ?''
+          endif
+          rsle()
+        endif
+    ENDIF
+    ?textr
+    rsle()
+  endif
+  RETURN ( NIL )

@@ -581,8 +581,11 @@ function TtnUcO(aTypeUc, aListTtn)
     netrepl("ttn,kop,kpl,nkkl,kgp,kpv,prz,vo,docguid,kto,ddc,tdc,dfp,dop,dvp,sdv",                                                ;
              {TtnUcr, 169, 20034, 20034, 20034, 20034, 0, 9, docguidr, gnKto, date(), time(), ctod(''), ctod(''), date(), 0};
           )
+    netrepl('Npv', {""})// очистить поле
+
     netrepl(cTtnUcr, {0})
     netrepl(cPrUcr, {2})// тип усц 1КОП или %  - 2 или 3 // {aTypeUc[1]}
+
                             // для НН анализ на 1 Коп.
       netrepl('RndSdv',{;
       getfield('t1', '0,gnVu,9,169-100';
